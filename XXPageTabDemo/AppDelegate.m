@@ -1,12 +1,13 @@
 //
 //  AppDelegate.m
-//  XXChartDemo
+//  XXPageTabDemo
 //
-//  Created by HJTXX on 2017/2/20.
+//  Created by HJTXX on 2017/2/23.
 //  Copyright © 2017年 HJTXX. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    ViewController *vc = [ViewController new];
+    self.window.rootViewController = vc;
     return YES;
 }
 

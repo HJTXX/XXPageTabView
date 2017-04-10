@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  XXChartDemo
+//  XXPageTabDemo
 //
-//  Created by HJTXX on 2017/2/20.
+//  Created by HJTXX on 2017/2/23.
 //  Copyright © 2017年 HJTXX. All rights reserved.
 //
 

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:XXChartDemo.xcodeproj">
+      location = "self:XXPageTabDemo.xcodeproj">
    </FileRef>
 </Workspace>

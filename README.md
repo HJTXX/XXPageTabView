@@ -4,10 +4,22 @@
 
 # 使用方法
 通过设置titleStyle和indicatorStyle最多支持九种组合效果，后续还会增加其他效果：
-<pre>self.pageTabView.titleStyle = XXPageTabTitleStyleDefault;
+<pre>typedef NS_ENUM(NSInteger, XXPageTabTitleStyle) {
+    XXPageTabTitleStyleDefault, //正常
+    XXPageTabTitleStyleGradient, //渐变
+    XXPageTabTitleStyleBlend //填充
+};
+
+typedef NS_ENUM(NSInteger, XXPageTabIndicatorStyle) {
+    XXPageTabIndicatorStyleDefault, //正常，自定义宽度
+    XXPageTabIndicatorStyleFollowText, //跟随文本长度变化
+    XXPageTabIndicatorStyleStretch //拉伸
+};
+
+self.pageTabView.titleStyle = XXPageTabTitleStyleDefault;
 self.pageTabView.indicatorStyle = XXPageTabIndicatorStyleDefault;
 </pre>
-在实际使用中，切换之后往往需要刷新当前页的数据，可以在代理方法中获取到最终页索引后进行数据刷新：
+在实际使用中，切换之后往往需要刷新当前页的数据，可以在代理方法中获取到最终页索引后对指定控制器进行数据刷新：
 <pre>- (void)pageTabViewDidEndChange {
     NSLog(@"#####%d", self.pageTabView.selectedTabIndex);
 }

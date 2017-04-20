@@ -24,6 +24,7 @@ self.pageTabView.indicatorStyle = XXPageTabIndicatorStyleDefault;
     NSLog(@"#####%d", self.pageTabView.selectedTabIndex);
 }
 </pre>
+注意：不要再ViewDidLoad里请求数据并绘制，如果有大量子控制器，会卡的，这并不是一个好的方案，数据请求应该是可见的时候再加载，否则无意义。
 
 # 最后
 如果在使用中遇到任何问题或者建议，欢迎issues，我会尽快处理，如果帮助到你，你懂的😏。

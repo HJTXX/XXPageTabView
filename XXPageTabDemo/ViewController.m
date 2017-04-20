@@ -63,11 +63,6 @@
 }
 
 - (void)pageTabViewDidEndChange {
-//    if(self.pageTabView.selectedTabIndex == 2) {
-//        self.pageTabView.frame = CGRectMake(0, 60, self.view.frame.size.width, 200);
-//    } else {
-//        self.pageTabView.frame = CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height-60);
-//    }
     NSLog(@"#####%d", self.pageTabView.selectedTabIndex);
 }
 

@@ -156,9 +156,20 @@
 
 - (void)initMainView {
     [self addSubview:self.bodyView];
-    for(NSInteger i = 0; i < _numberOfTabItems; i++) {
-        UIViewController *childController = _childControllers[i];
-        [self.bodyView addSubview:childController.view];
+    [self layoutChildViewWithIndex:_selectedTabIndex];
+}
+
+/**
+ 加载指定index的view
+
+ @param index 需要展示的child的索引
+ */
+- (void)layoutChildViewWithIndex:(NSInteger)index {
+    if(index >= 0 && index < _childControllers.count) {
+        UIViewController *childController = _childControllers[index];
+        if(childController.view.superview != self.bodyView) {
+            [self.bodyView addSubview:childController.view];
+        }
     }
 }
 
@@ -279,6 +290,7 @@
 }
 
 #pragma mark - UIScrollViewDelegate
+/*手指滑动会触发该方法，setContentOffset:animated:不会触发*/
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if(scrollView == self.bodyView) {
         _selectedTabIndex = self.bodyView.contentOffset.x/WIDTH(self.bodyView);
@@ -286,6 +298,7 @@
     }
 }
 
+/*setContentOffset:animated:会触发该方法，手指滑动不会触发*/
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     if(scrollView == self.bodyView) {
         [self reviseTabContentOffsetBySelectedIndex:YES];
@@ -323,6 +336,9 @@
                 _rightItemIndex = _leftItemIndex + 1;
             }
         }
+        //预加载左右页
+        [self layoutChildViewWithIndex:_leftItemIndex];
+        [self layoutChildViewWithIndex:_rightItemIndex];
         
         //调整title
         switch (_titleStyle) {
@@ -485,7 +501,9 @@
  获取color的rgb值
  */
 - (NSArray *)getRGBWithColor:(UIColor *)color {
-    CGFloat R, G, B;
+    CGFloat R = 0;
+    CGFloat G = 0;
+    CGFloat B = 0;
     NSInteger numComponents = CGColorGetNumberOfComponents(color.CGColor);
     if(numComponents == 4) {
         const CGFloat *components = CGColorGetComponents(color.CGColor);

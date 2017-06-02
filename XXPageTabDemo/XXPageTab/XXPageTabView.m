@@ -73,6 +73,37 @@
     return self;
 }
 
+- (void)reloadChildControllers:(NSArray<UIViewController *> *)childControllers
+                   childTitles:(NSArray<NSString *> *)childTitles {
+    if(childControllers.count>0 && childTitles.count>0) {
+        //记录上一次选择项的标题
+        NSString *selectedChildTitle = _childTitles[_selectedTabIndex];
+        _selectedTabIndex = 0;//更新索引，默认0
+        for(NSString *childTitle in childTitles) {
+            if([childTitle isEqualToString:selectedChildTitle]) {
+                _selectedTabIndex = [childTitles indexOfObject:childTitle];
+            }
+        }
+        
+        //更新部分数据
+        _childControllers = childControllers;
+        _childTitles = childTitles;
+        _numberOfTabItems = _childControllers.count>_childTitles.count?_childTitles.count:_childControllers.count;
+        _lastSelectedTabIndex = 0;
+        _leftItemIndex = 0;
+        _rightItemIndex = 0;
+        
+        //更新内容
+        [self resetTabView];
+        [self resetMainView];
+        
+        //刷新布局
+        _isNeedRefreshLayout = YES;
+        [self setNeedsLayout];
+        [self layoutIfNeeded];
+    }
+}
+
 - (void)layoutSubviews {
     if(_isNeedRefreshLayout) {
         //tab layout
@@ -95,8 +126,8 @@
 
         //body layout
         self.bodyView.frame = CGRectMake(0, _tabSize.height, WIDTH(self), HEIGHT(self)-_tabSize.height);
-        self.bodyView.contentSize = CGSizeMake(WIDTH(self)*_numberOfTabItems, 0);
         self.bodyView.contentOffset = CGPointMake(self.frame.size.width*_selectedTabIndex, 0);
+        self.bodyView.contentSize = CGSizeMake(WIDTH(self)*_numberOfTabItems, 0);
         [self reviseTabContentOffsetBySelectedIndex:NO];
         
         for(NSInteger i = 0; i < _numberOfTabItems; i++) {
@@ -110,6 +141,8 @@
 - (void)initBaseSettings {
     _selectedTabIndex = 0;
     _lastSelectedTabIndex = 0;
+    _leftItemIndex = 0;
+    _rightItemIndex = 0;
     _tabSize = CGSizeZero;
     _numberOfTabItems = _childControllers.count>_childTitles.count?_childTitles.count:_childControllers.count;
     _tabItemFont = [UIFont systemFontOfSize:kTabDefautFontSize];
@@ -136,8 +169,13 @@
 }
 
 - (void)initTabView {
-    [self addSubview:self.bgView];
-    [self addSubview:self.tabView];
+    if(!self.bgView.superview) {
+        [self addSubview:self.bgView];
+    }
+    
+    if(!self.tabView.superview) {
+        [self addSubview:self.tabView];
+    }
     
     for(NSInteger i = 0; i < _numberOfTabItems; i++) {
         XXPageTabItemLable *tabItem = [[XXPageTabItemLable alloc] init];
@@ -154,8 +192,29 @@
     }
 }
 
+- (void)resetTabView {
+    //清除已有内容
+    for(UIView *view in self.tabItems) {
+        [view removeFromSuperview];
+    }
+    [self.tabItems removeAllObjects];
+    
+    //重新加载
+    [self initTabView];
+}
+
 - (void)initMainView {
     [self addSubview:self.bodyView];
+    [self layoutChildViewWithIndex:_selectedTabIndex];
+}
+
+- (void)resetMainView {
+    //清除已有内容
+    for(UIView *view in self.bodyView.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    //重新加载
     [self layoutChildViewWithIndex:_selectedTabIndex];
 }
 
@@ -285,6 +344,7 @@
         _leftItemIndex = nextIndex > _selectedTabIndex?_selectedTabIndex:nextIndex;
         _rightItemIndex = nextIndex > _selectedTabIndex?nextIndex:_selectedTabIndex;
         _selectedTabIndex = nextIndex;
+        [self layoutChildViewWithIndex:_selectedTabIndex];
         [self.bodyView setContentOffset:CGPointMake(self.frame.size.width*_selectedTabIndex, 0) animated:YES];
     }
 }
@@ -335,10 +395,10 @@
                 _leftItemIndex = (int)(self.bodyView.contentOffset.x/WIDTH(self.bodyView));
                 _rightItemIndex = _leftItemIndex + 1;
             }
+            //手势滚动过程中预加载左右页
+            [self layoutChildViewWithIndex:_leftItemIndex];
+            [self layoutChildViewWithIndex:_rightItemIndex];
         }
-        //预加载左右页
-        [self layoutChildViewWithIndex:_leftItemIndex];
-        [self layoutChildViewWithIndex:_rightItemIndex];
         
         //调整title
         switch (_titleStyle) {
@@ -575,6 +635,16 @@
         
         if(_titleStyle == XXPageTabTitleStyleGradient) {
             [self resetTabItemScale];
+        }
+    }
+}
+
+- (void)setSelectedTabIndexWithAnimation:(NSInteger)selectedTabIndex {
+    if(selectedTabIndex >= 0 && selectedTabIndex < _numberOfTabItems && _selectedTabIndex != selectedTabIndex) {
+        //防止快速点击
+        if(_tabView.userInteractionEnabled) {
+            UIView *tabItem = [_tabItems objectAtIndex:selectedTabIndex];
+            [self changeChildControllerOnClick:tabItem.gestureRecognizers[0]];
         }
     }
 }

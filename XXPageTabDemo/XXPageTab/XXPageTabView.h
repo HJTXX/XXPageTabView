@@ -63,4 +63,11 @@ typedef NS_ENUM(NSInteger, XXPageTabIndicatorStyle) {
 - (instancetype)initWithChildControllers:(NSArray<UIViewController *> *)childControllers
                              childTitles:(NSArray<NSString *> *)childTitles;
 
+/*重新加载内容（可用于菜单栏自定义编辑）*/
+- (void)reloadChildControllers:(NSArray<UIViewController *> *)childControllers
+                   childTitles:(NSArray<NSString *> *)childTitles;
+
+/*用于外部设置selectedTabIndex时动画展示*/
+- (void)setSelectedTabIndexWithAnimation:(NSInteger)selectedTabIndex;
+
 @end

@@ -15,6 +15,7 @@
 		2622C7E01E5F0A5300ED237C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2622C7DE1E5F0A5300ED237C /* LaunchScreen.storyboard */; };
 		26237DAC1E6416A80038CB09 /* XXPageTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26237DAB1E6416A80038CB09 /* XXPageTabView.m */; };
 		26237DD11E6966710038CB09 /* XXPageTabItemLable.m in Sources */ = {isa = PBXBuildFile; fileRef = 26237DD01E6966710038CB09 /* XXPageTabItemLable.m */; };
+		265B27DE1EE13F57004488C8 /* TestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265B27DD1EE13F57004488C8 /* TestTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		26237DAB1E6416A80038CB09 /* XXPageTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXPageTabView.m; sourceTree = "<group>"; };
 		26237DCF1E6966710038CB09 /* XXPageTabItemLable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXPageTabItemLable.h; sourceTree = "<group>"; };
 		26237DD01E6966710038CB09 /* XXPageTabItemLable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXPageTabItemLable.m; sourceTree = "<group>"; };
+		265B27DC1EE13F57004488C8 /* TestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestTableViewController.h; sourceTree = "<group>"; };
+		265B27DD1EE13F57004488C8 /* TestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				2622C7D41E5F0A5300ED237C /* AppDelegate.m */,
 				2622C7D61E5F0A5300ED237C /* ViewController.h */,
 				2622C7D71E5F0A5300ED237C /* ViewController.m */,
+				265B27DC1EE13F57004488C8 /* TestTableViewController.h */,
+				265B27DD1EE13F57004488C8 /* TestTableViewController.m */,
 				2622C7D91E5F0A5300ED237C /* Main.storyboard */,
 				2622C7DC1E5F0A5300ED237C /* Assets.xcassets */,
 				2622C7DE1E5F0A5300ED237C /* LaunchScreen.storyboard */,
@@ -171,6 +176,7 @@
 				2622C7D81E5F0A5300ED237C /* ViewController.m in Sources */,
 				2622C7D51E5F0A5300ED237C /* AppDelegate.m in Sources */,
 				2622C7D21E5F0A5300ED237C /* main.m in Sources */,
+				265B27DE1EE13F57004488C8 /* TestTableViewController.m in Sources */,
 				26237DAC1E6416A80038CB09 /* XXPageTabView.m in Sources */,
 				26237DD11E6966710038CB09 /* XXPageTabItemLable.m in Sources */,
 			);

@@ -69,6 +69,7 @@
         [self initBaseSettings];
         [self initTabView];
         [self initMainView];
+        [self addIndicatorViewWithStyle];
     }
     return self;
 }
@@ -698,7 +699,7 @@
 - (void)setIndicatorStyle:(XXPageTabIndicatorStyle)indicatorStyle {
     if(_indicatorStyle == XXPageTabIndicatorStyleDefault) {
         _indicatorStyle = indicatorStyle;
-        [self addIndicatorViewWithStyle];
+//        [self addIndicatorViewWithStyle]; 
     }
 }
 

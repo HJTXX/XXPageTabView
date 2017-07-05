@@ -632,6 +632,8 @@
         _selectedTabIndex = selectedTabIndex;
         _lastSelectedTabIndex = selectedTabIndex;
         [self layoutIndicatorViewWithStyle];
+        [self resetMainView];
+        [self initMainView];
         self.bodyView.contentOffset = CGPointMake(WIDTH(self)*_selectedTabIndex, 0);
         
         if(_titleStyle == XXPageTabTitleStyleGradient) {

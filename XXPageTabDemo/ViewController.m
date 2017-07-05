@@ -53,7 +53,7 @@
     self.pageTabView.titleStyle = XXPageTabTitleStyleDefault;
     self.pageTabView.indicatorStyle = XXPageTabIndicatorStyleDefault;
 //    self.pageTabView.minScale = 1.0;
-//    self.pageTabView.selectedTabIndex = 4;
+    self.pageTabView.selectedTabIndex = 4;
 //    self.pageTabView.selectedTabIndex = -1;
 //    self.pageTabView.selectedTabIndex = 4;
     

@@ -52,6 +52,7 @@
 //    self.pageTabView.tabSize = CGSizeMake(self.view.frame.size.width, 40);
     self.pageTabView.titleStyle = XXPageTabTitleStyleDefault;
     self.pageTabView.indicatorStyle = XXPageTabIndicatorStyleDefault;
+//    self.pageTabView.separatorColor = [UIColor grayColor];
 //    self.pageTabView.minScale = 1.0;
     self.pageTabView.selectedTabIndex = 4;
 //    self.pageTabView.selectedTabIndex = -1;

@@ -28,6 +28,7 @@
 //tab
 @property (nonatomic, strong) UIScrollView *tabView;
 @property (nonatomic, strong) UIView *indicatorView;
+@property (nonatomic, strong) UIView *separatorView;
 
 //body
 @property (nonatomic, strong) UIScrollView *bodyView;
@@ -118,6 +119,7 @@
         
         self.tabView.frame = CGRectMake(0, 0, _tabSize.width, _tabSize.height);
         self.tabView.contentSize = CGSizeMake(_tabItemWidth*_numberOfTabItems, 0);
+        self.separatorView.frame = CGRectMake(0, _tabSize.height-0.5, _tabSize.width, 0.5);
         
         for(NSInteger i = 0; i < _tabItems.count; i++) {
             XXPageTabItemLable *tabItem = (XXPageTabItemLable *)_tabItems[i];
@@ -155,6 +157,7 @@
     _bodyBackgroundColor = [UIColor whiteColor];
     _unSelectedColor = [UIColor blackColor];
     _selectedColor = [UIColor redColor];
+    _separatorColor = [UIColor clearColor];
     _isNeedRefreshLayout = YES;
     _isChangeByClick = NO;
     _bodyBounces = YES;
@@ -176,6 +179,10 @@
     
     if(!self.tabView.superview) {
         [self addSubview:self.tabView];
+    }
+    
+    if(!self.separatorView.superview) {
+        [self addSubview:self.separatorView];
     }
     
     for(NSInteger i = 0; i < _numberOfTabItems; i++) {
@@ -595,6 +602,14 @@
     return _tabView;
 }
 
+- (UIView *)separatorView {
+    if(!_separatorView) {
+        _separatorView = [UIView new];
+        _separatorView.backgroundColor = _separatorColor;
+    }
+    return _separatorView;
+}
+
 - (UIScrollView *)bodyView {
     if(!_bodyView) {
         _bodyView = [UIScrollView new];
@@ -712,6 +727,11 @@
             [self resetTabItemScale];
         }
     }
+}
+
+- (void)setSeparatorColor:(UIColor *)separatorColor {
+    _separatorColor = separatorColor;
+    self.separatorView.backgroundColor = _separatorColor;
 }
 
 @end

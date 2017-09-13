@@ -48,6 +48,7 @@
     self.pageTabView = [[XXPageTabView alloc] initWithChildControllers:self.childViewControllers childTitles:@[@"列表1", @"列表2", @"列表3", @"列表4", @"列表5", @"列表6", @"列表7", @"列表8", @"列表9", @"列表10"]];
     self.pageTabView.frame = CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height-60);
     self.pageTabView.delegate = self;
+//    self.pageTabView.bodyEnableScroll = NO;
 //    self.pageTabView.bodyBounces = NO;
 //    self.pageTabView.tabSize = CGSizeMake(self.view.frame.size.width, 40);
     self.pageTabView.titleStyle = XXPageTabTitleStyleDefault;

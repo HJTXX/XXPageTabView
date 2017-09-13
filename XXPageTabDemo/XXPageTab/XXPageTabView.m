@@ -161,7 +161,7 @@
     _isNeedRefreshLayout = YES;
     _isChangeByClick = NO;
     _bodyBounces = YES;
-    _bodyEnableScroll = YES;
+    _bodyScrollEnabled = YES;
     _titleStyle = XXPageTabTitleStyleDefault;
     _indicatorStyle = XXPageTabIndicatorStyleDefault;
     _minScale = kMinScale;
@@ -620,7 +620,7 @@
         _bodyView.delegate = self;
         _bodyView.bounces = _bodyBounces;
         _bodyView.backgroundColor = _bodyBackgroundColor;
-        _bodyView.scrollEnabled = _bodyEnableScroll;
+        _bodyView.scrollEnabled = _bodyScrollEnabled;
     }
     return _bodyView;
 }
@@ -736,9 +736,9 @@
     self.separatorView.backgroundColor = _separatorColor;
 }
 
-- (void)setBodyEnableScroll:(BOOL)bodyEnableScroll {
-    _bodyEnableScroll = bodyEnableScroll;
-    self.bodyView.scrollEnabled = _bodyEnableScroll;
+- (void)setBodyScrollEnabled:(BOOL)bodyScrollEnabled {
+    _bodyScrollEnabled = bodyScrollEnabled;
+    self.bodyView.scrollEnabled = _bodyScrollEnabled;
 }
 
 @end

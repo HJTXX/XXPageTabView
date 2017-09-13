@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, XXPageTabIndicatorStyle) {
 /*是否打开body的边界弹动效果，默认YES*/
 @property (nonatomic, assign) BOOL bodyBounces;
 /*是否允许body滚动，默认YES*/
-@property (nonatomic, assign) BOOL bodyEnableScroll;
+@property (nonatomic, assign) BOOL bodyScrollEnabled;
 
 /*Title效果设置*/
 @property (nonatomic, assign) XXPageTabTitleStyle titleStyle;
